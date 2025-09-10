@@ -19,6 +19,9 @@ import { features } from "@/data/features";
 import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 export default function Home() {
   return (
     <div>
@@ -170,7 +173,7 @@ export default function Home() {
             </p>
           </div>
           <div className="max-w-6xl mx-auto">
-            <Accordion type="single" collapsible>
+            <Accordion type="single" collapsible className="w-full">
               {faqs.map((faqs, index) => {
                 return (
                   <AccordionItem value={`item-${index}`} key={index}>
@@ -187,6 +190,29 @@ export default function Home() {
         </div>
       </section>
 
+
+      <section className="w-full">
+        <div className="mx-auto py-24 gradient rounded-lg">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
+              Ready to Accelerate Your Career?
+            </h2>
+            <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
+              Join thousands of professionals who are advancing their careers
+              with AI-powered guidance.
+            </p>
+            <Link href="/dashboard" passHref>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="h-11 mt-5 animate-bounce"
+              >
+                Start Your Journey Today <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
 
   );
