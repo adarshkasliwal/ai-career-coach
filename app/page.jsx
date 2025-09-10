@@ -8,6 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { faqs } from "@/data/faqs";
 import { features } from "@/data/features";
 import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
@@ -111,34 +118,34 @@ export default function Home() {
                       <div className="flex items-center space-x-4">
                         <div className="relative h-12 w-12 flex-shrink-0">
                           <Image
-                           width={40} 
-                           height={40} 
-                           src={testimonial.image} 
-                           alt={"testimonial.author"}
-                           className="rounded-full object-cover border-2 border-primary/20"
-                           />
-                           </div>
-                           <div>
-                            <p className="font-semibold">
-                              {testimonial.author}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              {testimonial.role}
-                            </p>
-                            <p className="text-sm text-primary">
-                              {testimonial.company}
-                            </p>
-                           </div>
+                            width={40}
+                            height={40}
+                            src={testimonial.image}
+                            alt={"testimonial.author"}
+                            className="rounded-full object-cover border-2 border-primary/20"
+                          />
+                        </div>
+                        <div>
+                          <p className="font-semibold">
+                            {testimonial.author}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.role}
+                          </p>
+                          <p className="text-sm text-primary">
+                            {testimonial.company}
+                          </p>
+                        </div>
 
                       </div>
                       <blockquote>
                         <p className="text-muted-foreground italic relative">
                           <span className="text-3xl text-primary absolute -top-4 -left-2 ">
-                              &quot;
+                            &quot;
                           </span>
                           {testimonial.quote}
                           <span className="text-3xl text-primary absolute -bottom-4">
-                              &quot;
+                            &quot;
                           </span>
                         </p>
                       </blockquote>
@@ -147,6 +154,35 @@ export default function Home() {
                 </Card>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12 ">
+            <h2 className="text-3xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground">
+              Find answers to common about our platform
+            </p>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <Accordion type="single" collapsible>
+              {faqs.map((faqs, index) => {
+                return (
+                  <AccordionItem value={`item-${index}`} key={index}>
+                    <AccordionTrigger>{faqs.question}</AccordionTrigger>
+                    <AccordionContent>
+                      {faqs.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+            })}
+            </Accordion>
+
           </div>
         </div>
       </section>
