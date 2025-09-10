@@ -1,0 +1,84 @@
+<svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background for preview -->
+  <rect width="900" height="200" fill="#000000"/>
+  
+  <defs>
+    <!-- Professional gradient for GENIE -->
+    <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0099CC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#006B96;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Subtle glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- CAREER - Clean outlined letters in white -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.9">
+    <!-- C -->
+    <path d="M50 70 Q30 70 30 100 Q30 130 50 130 L75 130 M75 85 L50 85"/>
+    
+    <!-- A -->
+    <path d="M100 130 L120 70 L140 130 M110 110 L130 110"/>
+    
+    <!-- R -->
+    <path d="M165 70 L165 130 M165 70 L190 70 Q205 70 205 85 Q205 100 190 100 L165 100 M190 100 L205 130"/>
+    
+    <!-- E -->
+    <path d="M230 70 L230 130 M230 70 L265 70 M230 100 L260 100 M230 130 L265 130"/>
+    
+    <!-- E -->
+    <path d="M290 70 L290 130 M290 70 L325 70 M290 100 L320 100 M290 130 L325 130"/>
+    
+    <!-- R -->
+    <path d="M350 70 L350 130 M350 70 L375 70 Q390 70 390 85 Q390 100 375 100 L350 100 M375 100 L390 130"/>
+  </g>
+  
+  <!-- GENIE - Solid modern letters -->
+  <g fill="url(#professionalGradient)" filter="url(#glow)">
+    <!-- G -->
+    <path d="M450 70 Q430 70 430 100 Q430 130 450 130 L485 130 L485 115 L470 115 L470 100 L485 100 L485 85 L450 85 Q440 85 440 100 Q440 115 450 115 L470 115"/>
+    
+    <!-- E -->
+    <rect x="510" y="70" width="6" height="60"/>
+    <rect x="510" y="70" width="30" height="6"/>
+    <rect x="510" y="97" width="25" height="6"/>
+    <rect x="510" y="124" width="30" height="6"/>
+    
+    <!-- N -->
+    <rect x="565" y="70" width="6" height="60"/>
+    <rect x="595" y="70" width="6" height="60"/>
+    <path d="M571 70 L595 130 L601 130 L577 70 Z"/>
+    
+    <!-- I -->
+    <rect x="625" y="70" width="6" height="60"/>
+    <rect x="615" y="70" width="26" height="6"/>
+    <rect x="615" y="124" width="26" height="6"/>
+    
+    <!-- E -->
+    <rect x="665" y="70" width="6" height="60"/>
+    <rect x="665" y="70" width="30" height="6"/>
+    <rect x="665" y="97" width="25" height="6"/>
+    <rect x="665" y="124" width="30" height="6"/>
+  </g>
+  
+  <!-- Professional geometric accent -->
+  <g fill="url(#professionalGradient)">
+    <!-- Modern geometric diamond -->
+    <path d="M730 85 L745 100 L730 115 L715 100 Z" opacity="0.8"/>
+    <!-- Small accent squares -->
+    <rect x="760" y="95" width="8" height="8"/>
+    <rect x="775" y="88" width="6" height="6" opacity="0.6"/>
+    <rect x="785" y="102" width="4" height="4" opacity="0.4"/>
+  </g>
+  
+  <!-- Subtle connecting line -->
+  <line x1="415" y1="100" x2="435" y2="100" stroke="url(#professionalGradient)" stroke-width="2" opacity="0.5"/>
+</svg>
