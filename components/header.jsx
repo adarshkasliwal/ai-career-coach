@@ -1,29 +1,31 @@
-import React from 'react'
-import {
-    ClerkProvider,
-    SignInButton,
-    SignUpButton,
-    SignedIn,
-    SignedOut,
-    UserButton,
-} from '@clerk/nextjs'
-import Image from 'next/image'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from 'next/link'
-import { ChevronDown, FileText, GraduationCap, LayoutDashboard, PenBox, StarsIcon } from 'lucide-react'
-import { Button } from './ui/button'
 
-const Header = () => {
+
+import React from "react";
+import { Button } from "./ui/button";
+import {
+  PenBox,
+  LayoutDashboard,
+  FileText,
+  GraduationCap,
+  ChevronDown,
+  StarsIcon,
+} from "lucide-react";
+import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { checkUser } from "@/lib/checkUser";
+
+const Header = async() => {
+    await checkUser()
     return (
         <header className='fixed bg-background/80 backdrop-blur-md top-0 w-full border-b border-gray-500
-     x-50 supports-[backdrop-filter]:bg-background'>
+     x-50 supports-[backdrop-filter]:bg-background z-50'>
             <nav className='container mx-auto px-0 h-16 flex items-center justify-between'>
                 <Link href='/'>
                     <Image
