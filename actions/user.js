@@ -1,6 +1,9 @@
 "use server"
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
+import { success } from "zod";
+import { generateAIInsights } from "./dashboard";
+
 export async function updateUser(data) {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized")
@@ -22,19 +25,14 @@ export async function updateUser(data) {
             })
             //if not
             if (!industryInsight) {
-                industryInsight = await tx.industryInsight.create({
+                const insights = await generateAIInsights(data.industry)
+                industryInsight = await db.industryInsight.create({
                     data: {
                         industry: data.industry,
-                        salaryRanges: [],
-                        growthRate: 0,
-                        demandLevel: "Medium",
-                        topSkills: [],
-                        marketOutlook: "Neutral",
-                        keyTrends: [],
-                        recommendedSkills: [],
-                        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-                    }
-                })
+                        ...insights,
+                        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+                    },
+                });
             }
 
             //update the user
@@ -55,11 +53,11 @@ export async function updateUser(data) {
                 timeout: 10000,
             }
         );
-        return result.user
+        return { success: true, ...result }
     }
     catch (error) {
         console.log("Error updating user and industry", error.message);
-        throw new Error("Failed to update profile");
+        throw new Error("Failed to update profile" + error.message);
     }
 }
 
@@ -75,20 +73,20 @@ export async function getUserOnboardingStatus() {
     })
     if (!user) throw new Error("User not found")
 
-    try{
-        const user=await db.user.findUnique({
-            where:{
-                clerkUserId:userId,
+    try {
+        const user = await db.user.findUnique({
+            where: {
+                clerkUserId: userId,
             },
-            select:{
-                industry:true,
+            select: {
+                industry: true,
             },
         });
-        return{
-            isOnboarded:!!user?.industry,
+        return {
+            isOnboarded: !!user?.industry,
         }
-    }catch(error){
-        console.log("Error checking onboarding status:",error.message);
+    } catch (error) {
+        console.log("Error checking onboarding status:", error.message);
         throw new Error("Failed to check onboarding status");
     }
 }
